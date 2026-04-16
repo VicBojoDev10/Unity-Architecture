@@ -42,6 +42,6 @@ public class Wander : MonoBehaviorSteeringBehavior
         Vector3 targetWorld = ctx.position + circleCenter + wanderTarget; 
         
         Vector3 desired = (targetWorld - ctx.position).normalized * ctx.maxSpeed;
-        return desired - ctx.velocity;
+        return desired - ctx.velocity; 
     }
 }
