@@ -26,18 +26,44 @@ public class SteeringControllerEditor : Editor
             if(GUILayout.Button($"+ Add {type.Name}"))
             {
                 Undo.RecordObject(ctrl, $"Add {type.Name}");
-                ctrl.behaviors.Add((SteeringBehaviour)Activator.CreateInstance(type));
-                EditorUtility.SetDirty(ctrl);
 
+                if (typeof(MonoBehaviour).IsAssignableFrom(type))
+                {
+                    // 1. Añadimos el componente al GameObject
+                    Component newComp = ctrl.gameObject.AddComponent(type);
+    
+                    // 2. FORZAMOS la conversión pasando por 'object' 
+                    // Esto evita el error de "built-in conversion"
+                    SteeringBehaviour sb = (SteeringBehaviour)(object)newComp;
+    
+                    if (sb != null)
+                    {
+                        ctrl.behaviors.Add(sb);
+                    }
+                }
+                else
+                {
+                    // Para clases normales POCO
+                    var instance = (SteeringBehaviour)Activator.CreateInstance(type);
+                    ctrl.behaviors.Add(instance);
+                }
+
+                EditorUtility.SetDirty(ctrl);
             }
         }
 
-        if(ctrl.behaviors.Any(b => b == null))
+        // Limpieza de nulos
+        if (ctrl.behaviors != null && ctrl.behaviors.Any(b => b == null))
         {
             EditorGUILayout.Space(5);
-            if(GUILayout.Button("Remove Null Behaviors"))
+            if (GUILayout.Button("Remove Null Behaviors"))
+            {
+                Undo.RecordObject(ctrl, "Remove Nulls");
                 ctrl.behaviors.RemoveAll(b => b == null);
+                EditorUtility.SetDirty(ctrl);
+            }
         }
+        
     }
 }
 #endif
