@@ -7,6 +7,6 @@ public abstract class SteeringBehaviour
     public float weight = 1f;
     public bool enabled = true;
 
-    public abstract Vector3 GetSteering(SteeringContext ctx);
+    public abstract Vector2 GetSteering(SteeringContext ctx);
 
 }

@@ -20,5 +20,5 @@ public abstract class MonoBehaviorSteeringBehavior : MonoBehaviour
         //controller?.UnregisterMonoBehaviour(this);
     }
 
-    public abstract Vector3 GetSteering(SteeringContext ctx);
+    public abstract Vector2 GetSteering(SteeringContext ctx);
 }

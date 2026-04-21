@@ -7,7 +7,7 @@ public class Wander : MonoBehaviorSteeringBehavior
     public float wanderJitter = 1f;
     public float updateInterval = 0.2f;
 
-    private Vector3 wanderTarget;
+    private Vector2 wanderTarget;
 
     protected override void Awake()
     {
@@ -25,8 +25,8 @@ public class Wander : MonoBehaviorSteeringBehavior
     {
         while (true)
         {
-            wanderTarget += new Vector3(
-                Random.Range(-1f,1f) * wanderJitter, 0f,
+            wanderTarget += new Vector2(
+                Random.Range(-1f,1f) * wanderJitter,
                 Random.Range(-1f,1f) * wanderJitter
                 );
             wanderTarget = wanderTarget.normalized * wanderRadius;
@@ -34,14 +34,14 @@ public class Wander : MonoBehaviorSteeringBehavior
         }
     }
 
-    public override Vector3 GetSteering(SteeringContext ctx)
+    public override Vector2 GetSteering(SteeringContext ctx)
     {
-        if (!enabled) return Vector3.zero;
+        if (!enabled) return Vector2.zero;
 
-        Vector3 circleCenter = ctx.velocity.normalized * wanderDistance;
-        Vector3 targetWorld = ctx.position + circleCenter + wanderTarget; 
+        Vector2 circleCenter = ctx.velocity.normalized * wanderDistance;
+        Vector2 targetWorld = ctx.position + circleCenter + wanderTarget; 
         
-        Vector3 desired = (targetWorld - ctx.position).normalized * ctx.maxSpeed;
+        Vector2 desired = (targetWorld - ctx.position).normalized * ctx.maxSpeed;
         return desired - ctx.velocity; 
     }
 }

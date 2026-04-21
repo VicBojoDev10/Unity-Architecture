@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class SteeringContext
 {
-    public Vector3 position;
-    public Vector3 velocity;
+    public Vector2 position;
+    public Vector2 velocity;
     public float maxSpeed;
     public float maxForce;
 
-    public SteeringContext(Vector3 pos, Vector3 vel, float spd, float frc)
+    public SteeringContext(Vector2 pos, Vector2 vel, float spd, float frc)
     {
         position = pos; 
         velocity = vel;
