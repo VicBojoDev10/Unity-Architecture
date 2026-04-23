@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SteeringContext
+public struct SteeringContext
 {
     public Vector2 position;
     public Vector2 velocity;
