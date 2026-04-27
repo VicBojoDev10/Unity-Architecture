@@ -44,4 +44,5 @@ public class Wander : MonoBehaviorSteeringBehavior
         Vector2 desired = (targetWorld - ctx.position).normalized * ctx.maxSpeed;
         return desired - ctx.velocity; 
     }
+    
 }
