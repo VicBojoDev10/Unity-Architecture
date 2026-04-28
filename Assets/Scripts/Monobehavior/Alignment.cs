@@ -1,16 +1,9 @@
 using UnityEngine;
 
-public class Alignment : MonoBehaviour
+public class Alignment : MonoBehaviorSteeringBehavior
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   public override Vector2 GetSteering(SteeringContext ctx)
+   {
+      return Vector2.zero;
+   }
 }

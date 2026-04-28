@@ -1,16 +1,9 @@
 using UnityEngine;
 
-public class Cohesion : MonoBehaviour
+public class Cohesion : MonoBehaviorSteeringBehavior
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override Vector2 GetSteering(SteeringContext ctx)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return Vector2.zero;
     }
 }
